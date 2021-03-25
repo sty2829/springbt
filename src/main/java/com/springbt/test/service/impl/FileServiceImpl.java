@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileServiceImpl implements FileService {
 
-	private final String ROOT = "C:\\study\\workspace11\\springbt\\src\\main\\webapp\\resources\\";
+	private final String ROOT = "C:\\Users\\Administrator\\git\\springbt\\src\\main\\webapp\\resources\\";
 	
 	@Autowired
 	private FileRepository fileRepo;

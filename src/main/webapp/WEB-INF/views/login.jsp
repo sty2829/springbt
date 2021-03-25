@@ -12,26 +12,27 @@
 <button onclick="login()">로그인</button>
 <script>
 function login(){
+	var param = {};
+	var objs = document.querySelectorAll('input[type="text"]');
+	
+	for(obj of objs){
+		param[obj.id] = obj.value;
+	}
+	
+	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', '/login');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = null;
 			if(xhr.responseText){
-				res = JSON.parse(xhr.responseText);
+				var res = JSON.parse(xhr.responseText);
+				alert(res.cuiName + '님 반갑습니다');
+				return;
 			}
-			if(res){
-				alert('로그인성공');
-			}else{
-				alert('로그인실패');
-			}
+			alert('아이디나 비밀번호 를 확인해주세요');
 		}
 	}
-	var param = {};
-	var objs = document.querySelectorAll('input[type="text"]');
-	for(obj of objs){
-		param[obj.id] = obj.value;
-	}
+
 	xhr.setRequestHeader('content-type', 'application/json;charSet="UTF-8"');
 	xhr.send(JSON.stringify(param));
 }
