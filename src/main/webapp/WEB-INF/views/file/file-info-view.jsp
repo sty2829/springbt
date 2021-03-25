@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td data-col="fiiContent"></td>
+		<td data-col="fiiContent" data-type="enter"></td>
 	</tr>
 	<tr>
 		<th>이미지</th>
@@ -29,12 +30,14 @@
 		<th>파일이름</th>
 		<td data-col="fiiFileName"></td>
 	</tr>
-	<tr>
-		<td colspan="2" align="center">
-		<button onclick="location.href='/views/file-update?fiiNum=${param.fiiNum}'">수정</button>
-		<button onclick="goDelete()">삭제</button>
-		</td>
-	</tr>
+	<c:if test="${customerInfo ne null }">
+		<tr>
+			<td colspan="2" align="center">
+			<button onclick="location.href='/views/file/file-info-update?fiiNum=${param.fiiNum}'">수정</button>
+			<button onclick="goDelete()">삭제</button>
+			</td>
+		</tr>
+	</c:if>
 </table>
 <script>
 var url = '/file-info?fiiNum=' + ${param.fiiNum};
@@ -51,6 +54,8 @@ window.onload = function() {
 				var type = td.getAttribute('data-type');
 				if(type === 'img'){
 					data = '<img width="300" src="/resources/' + res[key] + '">';
+				}else if(type === 'enter'){
+					data = data.split('\n').join('<br>');
 				}
 				td.innerHTML = data;	
 			}
@@ -65,7 +70,7 @@ function goDelete(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText == 1){
 				alert('삭제 성공');
-				location.href = '/views/file-info-list';
+				location.href = '/views/file/file-info-list';
 			}else{
 				alert('삭제 실패');
 			}	

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${customerInfo eq null }">
+<script>
+	alert('게시판 수정 권한이 없습니다.');
+	location.href = '/views/user/login';
+</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +38,7 @@ function update(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1 ){
 				alert('업데이트 성공')
-				location.href = '/views/file-view?fiiNum=' + ${param.fiiNum};
+				location.href = '/views/file/file-info-view?fiiNum=' + ${param.fiiNum};
 			}else{
 				alert('업데이트 실패')
 			}

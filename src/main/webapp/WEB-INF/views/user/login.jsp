@@ -27,6 +27,7 @@ function login(){
 			if(xhr.responseText){
 				var res = JSON.parse(xhr.responseText);
 				alert(res.cuiName + '님 반갑습니다');
+				location.href = '/';
 				return;
 			}
 			alert('아이디나 비밀번호 를 확인해주세요');

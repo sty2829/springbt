@@ -20,8 +20,18 @@ public class CustomerInfoController {
 	
 	@PostMapping("/login")
 	public @ResponseBody CustomerInfo login(@RequestBody CustomerInfo customerInfo, HttpServletRequest request) {
+		CustomerInfo cui = customerService.login(customerInfo);
+		if(cui!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("customerInfo", cui);
+		}
+		return cui;
+	}
+	
+	@PostMapping("/logout")
+	public @ResponseBody boolean logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("customerInfo", customerInfo);
-		return customerService.login(customerInfo);
+		session.invalidate();
+		return true;
 	}
 }

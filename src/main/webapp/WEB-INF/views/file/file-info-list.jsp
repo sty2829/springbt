@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,14 @@
 	<tr>
 		<th>번호</th>
 		<th>제목</th>
-		<th>내용</th>
 		<th>사진</th>
 	</tr>
 	<tbody id="tBody">
 	</tbody>
 </table>
+<c:if test="${customerInfo ne null }">
+<button onclick="location.href='/views/file/file-info-insert'">등록</button>
+</c:if>
 <script>
 function search() {
 	var xhr = new XMLHttpRequest();
@@ -39,14 +42,12 @@ function search() {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var fi of res){
-				html += '<tr onclick="location.href=\'/views/file-view?fiiNum=' + fi.fiiNum + '\'" style="cursor:pointer">';
+				html += '<tr onclick="location.href=\'/views/file/file-info-view?fiiNum=' + fi.fiiNum + '\'" style="cursor:pointer">';
 				html += '<td>' + fi.fiiNum + '</td>';
 				html += '<td>' + fi.fiiTitle + '</td>';
-				html += '<td>' + fi.fiiContent + '</td>';
 				html += '<td><img src="/resources/' + fi.fiiFilePath + '" width="300" height="150"></td>';
 				html += '</tr>';
 			}
-			html += '<tr><td colspan="4" align="right"><button onclick="location.href=\'/views/file-upload\'">등록</button></td></tr>'
 			document.querySelector('#tBody').innerHTML = html;
 		}
 	}
