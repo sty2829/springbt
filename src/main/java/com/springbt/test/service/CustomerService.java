@@ -5,4 +5,6 @@ import com.springbt.test.entity.CustomerInfo;
 public interface CustomerService {
 
 	CustomerInfo login(CustomerInfo customerInfo);
+	
+	CustomerInfo getCustomerInfoById(Integer cuiNum);
 }

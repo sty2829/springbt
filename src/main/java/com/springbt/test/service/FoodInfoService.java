@@ -10,7 +10,7 @@ public interface FoodInfoService {
 	
 	FoodInfo getFoodInfo(Integer fiNum);
 	
-	FoodInfo saveFoodInfo(FoodInfo foodInfo);
+	Integer saveFoodInfo(FoodInfo foodInfo);
 	
 	FoodInfo updateFoodInfo(FoodInfo foodInfo);
 	

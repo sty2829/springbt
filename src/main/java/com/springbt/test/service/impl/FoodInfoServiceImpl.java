@@ -22,7 +22,7 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 		if(foodInfo.getFiName() != null) {
 			return foodInfoRepository.findByFiNameContaining(foodInfo.getFiName());
 		}else if(foodInfo.getFiPrice() != null) {
-			return foodInfoRepository.findByFiPriceContaining(String.valueOf(foodInfo.getFiPrice()));
+			return foodInfoRepository.findByFiPriceContaining(foodInfo.getFiPrice());
 		}else if(foodInfo.getFiType() != null) {
 			return foodInfoRepository.findByFiTypeContaining(foodInfo.getFiType());
 		}
@@ -40,8 +40,9 @@ public class FoodInfoServiceImpl implements FoodInfoService {
 	}
 
 	@Override
-	public FoodInfo saveFoodInfo(FoodInfo foodInfo) {
-		return foodInfoRepository.save(foodInfo);
+	public Integer saveFoodInfo(FoodInfo foodInfo) {
+		foodInfoRepository.save(foodInfo);
+		return foodInfo.getFiNum();
 	}
 
 	@Override

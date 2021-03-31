@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,9 +37,17 @@ public class FoodInfo {
 	@Column(name = "fi_desc")
 	private String fiDesc;
 	
-	@Column(name = "credat", insertable = false)
+	@Column(name = "credat", insertable = false, updatable = false)
 	private Date credat;
 	
 	@Column(name = "active", insertable = false)
 	private String active;
+	
+//	
+//	@Column(name = "cui_num")
+//	private Integer cuiNum;
+	
+	@ManyToOne
+	@JoinColumn(name="cui_num")
+	private CustomerInfo customerInfo;
 }

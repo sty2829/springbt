@@ -35,7 +35,7 @@ public class FoodInfoController {
 	}
 	
 	@PostMapping("/food-info")
-	public @ResponseBody FoodInfo saveFoodInfo(@RequestBody FoodInfo foodInfo) {
+	public @ResponseBody Integer saveFoodInfo(@RequestBody FoodInfo foodInfo) {
 		log.info("foodInfo => {}", foodInfo);
 		return foodInfoService.saveFoodInfo(foodInfo);
 	}

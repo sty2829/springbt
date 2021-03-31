@@ -25,4 +25,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return tmpCui;
 	}
 
+	@Override
+	public CustomerInfo getCustomerInfoById(Integer cuiNum) {
+		return customerInfoRepository.findById(cuiNum).get();
+	}
+
 }

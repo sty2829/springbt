@@ -15,15 +15,19 @@
 	<thead>
 		<tr>
 			<th>번호</th>
-			<th>음식명</th>
+			<th>메뉴명</th>
 			<th>가격</th>
 			<th>종류</th>
+			<th>등록자</th>
 		</tr>
 	</thead>
 	<tbody id="tBody">
 	</tbody>
+	<tr>
+		<td colspan="5" align="right"><button onclick="location.href='/views/food/food-info-insert'">등록</button></td>
+	</tr>
 </table>
-<button onclick="location.href='/views/food/food-info-insert'">등록</button>
+
 <script>
 function getList(){
 	var objs = document.querySelectorAll('[type="text"]');
@@ -47,6 +51,7 @@ function getList(){
 				html += '<td>' + food.fiName + '</td>';
 				html += '<td>' + food.fiPrice + '</td>';
 				html += '<td>' + food.fiType + '</td>';
+				html += '<td>' + food.customerInfo.cuiName + '</td>';
 				html += '</tr>';
 			}
 			document.querySelector('#tBody').innerHTML = html;

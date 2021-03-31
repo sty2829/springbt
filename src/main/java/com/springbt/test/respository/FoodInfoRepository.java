@@ -13,7 +13,7 @@ public interface FoodInfoRepository extends JpaRepository<FoodInfo, Integer> {
 	
 	List<FoodInfo> findByFiNameContaining(String fiName);
 	
-	List<FoodInfo> findByFiPriceContaining(String fiPrice);
+	List<FoodInfo> findByFiPriceContaining(Integer fiPrice);
 	
 	List<FoodInfo> findByFiTypeContaining(String fiType);
 	
